@@ -2,48 +2,6 @@
 //////////////////// POPUP ADD /////////////////////
 //////////////////////////////////////////////////*/
 
-//get de products
-var products = $(".product__item");
-
-//make it to an array
-productsArray = jQuery.makeArray(popup);
-
-//get popup 
-var popup = $(".popup");
-
-// Get the <span> element that closes the popup
-var close = $('.close');
-
-//get add btn
-var btn = $(".product__add");
-
-//loop over products
-for (let i = 0; i < productsArray.length; i++) {
-
-    //get link 
-    var btn = $(".product__add");
-
-    //when click on btn of current element, show popup
-    $(btn[i]).on('click', function(e){
-        //show popup
-        popup.css("display", "block");
-        e.preventDefault();
-    });
-
-    // When the user clicks on <span> (x), close the popup
-    $(close).on('click', function(){
-        popup.css('display', "none");
-    });
-
-    // When the user clicks anywhere outside of the popup, close it
-    $(window).on('click', function(event){
-        var target = $(event.target);
-        if (target.is(popup) ) {
-            popup.css('display', "none");
-        }
-    });
-
-}
 
 /*//////////////////////////////////////////////////
 ////////////// EDIT BOX DETAIL PAGE ////////////////
@@ -93,18 +51,21 @@ for (let i = 0; i < productsArray.length; i++) {
     
 /******* POPUP TOEVOEGEN *******/
 
+//get popup 
+var popup = $(".popup");
+
+// Get the <span> element that closes the popup
+var close = $('.footer__detail .close');
+
 // when click on add btn, show popup
 $('.productInformation__actions__add').on('click', function(e){
     popup.css("display", "block");
-
-    //add title to popup
-    popupTxt.html($('.productInformation__details__title'));
 
     e.preventDefault();
 });
 
 //when click on cross, close popup
-$(".footer__detail .close").on("click", function(){
+$(close).on("click", function(){
     popup.css("display", "none");
 });
 
