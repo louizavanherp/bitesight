@@ -8,10 +8,10 @@
         // -> if exists -> return existing
         // -> if !exists -> return new PDO
         public static function getInstance() {
-            if(file_exists("settings/db.php")) {
-                include_once("settings/db.php");
+            if(file_exists("settings/config.php")) {
+                include_once("settings/config.php");
             } else {
-                include_once("../settings/db.php");
+                include_once("../settings/config.php");
             }
             
             if( self::$conn == null ) {
