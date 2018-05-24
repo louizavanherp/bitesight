@@ -6,7 +6,7 @@
 var products = $(".product__item");
 
 //make it to an array
-productsArray = jQuery.makeArray(poup);
+productsArray = jQuery.makeArray(popup);
 
 //get popup 
 var popup = $(".popup");
@@ -104,7 +104,7 @@ $('.productInformation__actions__add').on('click', function(e){
 });
 
 //when click on cross, close popup
-$(".close").on("click", function(){
+$(".footer__detail .close").on("click", function(){
     popup.css("display", "none");
 });
 

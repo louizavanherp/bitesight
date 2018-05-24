@@ -84,7 +84,7 @@
         </section>
     </main>
 
-    <footer>
+    <footer class="footer__detail">
         <?php include_once("includes/editEat.inc.php")?>
         <?php include_once("includes/editDelete.inc.php")?>
         <?php include_once("includes/popupDetail.inc.php") ?>
