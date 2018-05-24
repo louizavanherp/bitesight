@@ -14,9 +14,9 @@
     //check if user has clicked on add btn
     if(isset($_GET['addHome'])) {
         //get product Id from URL
-        $productId = $_GET['id'];
+        $productId = $_GET['addHome'];
         $product->addProductToList($productId);
-        //header("Location: index.php");
+        header("Location: index.php");
     }
 
 ?><!DOCTYPE html>

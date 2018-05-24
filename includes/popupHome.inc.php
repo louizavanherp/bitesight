@@ -1,11 +1,10 @@
-<div class="popup">
+<div class="popup popupHome">
           <!-- popup content -->
           <div class="popup-content">
-            <div>
+            <div class="popup-header">
               <span class=close>&times;</span>
-              <h1 class='popup-txt'>hoi</h1>
             </div>
-            <a class="popup-addBtn" href="?id=<?php echo $productId; ?>&addHome=<?php echo $productId; ?>">Voeg toe</a>
+            <a class="popup-addBtn popup-addBtnHome" href="?addHome=<?php echo $productId; ?>">Voeg toe</a>
           </div>       
   </div>
 

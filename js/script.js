@@ -1,7 +1,28 @@
 /*//////////////////////////////////////////////////
 //////////////////// POPUP ADD /////////////////////
 //////////////////////////////////////////////////*/
+$(".product__add").on("click", function(e){
+    var product = $(this).data("product");
+    console.log(product);
 
+    $.ajax({
+        method: "POST",
+        url: "ajax/popup.ajax.php",
+        data: {product: product}
+    })
+    .done(function(res){
+        if(res.status == "success"){
+            $(".popupHome").css("display", "block");
+            //first delete previous content
+            $(".popup-header h1").remove();
+            //add title to popup 
+            $title = `<h1 class="popup-txt">${res.title}</h1>`;
+            $(".popup-header").append($title);
+            //fill in href with id 
+            $(".popup-addBtnHome").attr("href", `?addHome=${res.product}`);
+        }
+    });
+});
 
 /*//////////////////////////////////////////////////
 ////////////// EDIT BOX DETAIL PAGE ////////////////
@@ -55,7 +76,7 @@
 var popup = $(".popup");
 
 // Get the <span> element that closes the popup
-var close = $('.footer__detail .close');
+var close = $('.close');
 
 // when click on add btn, show popup
 $('.productInformation__actions__add').on('click', function(e){
