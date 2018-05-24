@@ -46,7 +46,7 @@
 
                     <a href="detail.php?id=<?php echo $p['id'] ?>" class="productLink"><img class="product__image" src="<?php echo $p['image'] ?>" alt="<?php echo $p['title'] ?>"></a>
                     <div class="product__bottom">
-                    <a class="product__add" data-product="<?php echo$p['id'] ?>" href="#">&#43;</a>
+                    <a class="product__add" data-product="<?php echo$p['id'] ?>" href="#"><img src="images/icon/plus.svg" alt="plus"></a>
                     <?php if($p['freshness']==1):?>
                         <div class='product__dot product__dot--green'></div>
                         <?php elseif($p['freshness']==2): ?>
