@@ -8,24 +8,26 @@
 
     // get product id
     $productId = $_GET['id'];
-
     //create product object
     $product = new Product($db);
 
     //get product info
     $productInfo = $product->getProductInfo($productId);
 
+    //creat new stockitem object
+    $stockItem = new Stock($db);
+    
     //delete product
         //check if user has clicked on delete btn
         if(isset($_GET['delete'])) {
-            $product->deleteProduct($productId);
+            $stockItem->deleteProduct($_GET['delete']);
             header("Location: index.php");
         }
     
     //add product to list 
         //check if user has clicked on add btn
         if(isset($_GET['addDetail'])) {
-            $product->addProductToList($productId);
+            $product->addProductToList($_GET['id']);
         }
 
 

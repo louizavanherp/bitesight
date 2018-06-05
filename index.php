@@ -6,9 +6,12 @@
     //create database connection
     $db = Db::getInstance();
 
-    //get all products
+    //get all products in stock
+    $stockItem = new stock($db);
+    $stock = $stockItem->getAll();
+
+    //new product object
     $product = new Product($db);
-    $products = $product->getAll();
 
     //add product to list
     //check if user has clicked on add btn
@@ -39,17 +42,17 @@
     
         <div class="products">
 
-        <?php foreach($products as $p): ?>
+        <?php foreach($stock as $item): ?>
         <li class="product__item">
         
                 <div class="product--box">
 
-                    <a href="detail.php?id=<?php echo $p['id'] ?>" class="productLink"><img class="product__image" src="<?php echo $p['image'] ?>" alt="<?php echo $p['title'] ?>"></a>
+                    <a href="detail.php?id=<?php echo $item['product_id'] ?>&stockId=<?php echo $item['id'] ?>" class="productLink"><img class="product__image" src="<?php echo $item['image'] ?>" alt="<?php echo $item['title'] ?>"></a>
                     <div class="product__bottom">
-                    <a class="product__add" data-product="<?php echo$p['id'] ?>" href="#"><img src="images/icon/plus.svg" alt="plus"></a>
-                    <?php if($p['freshness']==1):?>
+                    <a class="product__add" data-product="<?php echo $item['product_id'] ?>" href="#"><img src="images/icon/plus.svg" alt="plus"></a>
+                    <?php if($item['freshness']==1):?>
                         <div class='product__dot product__dot--green'></div>
-                        <?php elseif($p['freshness']==2): ?>
+                        <?php elseif($item['freshness']==2): ?>
                         <div class='product__dot product__dot--orange'></div>
                         <?php else: ?>
                         <div class='product__dot product__dot--red'></div> 
@@ -58,8 +61,8 @@
 
                 </div>
 
-                <?php $productId = $p['id']; ?>
-                <h2 class="product__title" ><?php echo $p['title'] ?></h2>
+                <?php $productId = $item['product_id']; ?>
+                <h2 class="product__title" ><?php echo $item['title'] ?></h2>
         </li>
         <?php endforeach; ?>
         </div>

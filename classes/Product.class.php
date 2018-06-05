@@ -78,44 +78,23 @@ class Product{
     ###       METHODS       ###
     ###                     ###
 
-    public function getAll() {
+    /*public function getAll() {
         $statement = $this->db->prepare("SELECT * FROM products ORDER BY id ASC");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function getFresh() {
-        $statement = $this->db->prepare("SELECT * FROM products WHERE freshness = 1 ORDER BY id ASC");
-        $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function getEatable() {
-        $statement = $this->db->prepare("SELECT * FROM products WHERE freshness = 2 ORDER BY id ASC");
-        $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function getExpired() {
-        $statement = $this->db->prepare("SELECT * FROM products WHERE freshness = 3 ORDER BY id ASC");
-        $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
-    }
+    }*/
 
     public function getProductInfo($product_id) {
-        $statement = $this->db->prepare("SELECT * FROM products WHERE id = :product_id");
+        $statement = $this->db->prepare("SELECT * 
+        FROM stock
+        INNER JOIN products
+        ON products.id = stock.product_id 
+        WHERE products.id = :product_id");
         $statement->bindParam(":product_id", $product_id);
         $statement->execute();
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function deleteProduct($product_id) {
-        $statement = $this->db->prepare("DELETE FROM products WHERE id = :product_id");
-        $statement->bindValue(":product_id", $product_id);
-        $statement->execute();
-    }
-
-    
     public function addProductToList($product_id) {
         $statement = $this->db->prepare("INSERT INTO list (product_id) VALUES (:product_id)");
         $statement->bindValue(":product_id", $product_id);
@@ -131,6 +110,18 @@ class Product{
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getSearchedItems($p_product=null)
+	{
+		if($p_product != "")
+		{
+			$statement = $this->db->prepare("select * from products where title like :title");
+			$statement->bindValue(":title", "%$p_product%");
+		}
+		
+		$statement->execute();
+		return $statement->fetchAll(PDO::FETCH_ASSOC);
+	}
 
 
 }

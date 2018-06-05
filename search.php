@@ -23,7 +23,13 @@
 <body>
 
     <main class="container container__search">
-        
+        <div class="search__field">
+            <img class="search__field__icon" src="images/icon/search.svg" alt="">
+            <input class="search__field__input" name="search" type="text" placeholder="zoek product..">
+        </div>
+
+        <div class="search__results">
+        </div>
     </main>
 
     <footer>

@@ -6,9 +6,21 @@
     //create database connection
     $db = Db::getInstance();
 
-    //get eatable products
+    //get fresh products in stock
+    $stockItemFresh = new stock($db);
+    $stock = $stockItemFresh->getEatable();
+
+    //new product object
     $product = new Product($db);
-    $products = $product->getEatable();
+
+    //add product to list
+    //check if user has clicked on add btn
+    if(isset($_GET['addHome'])) {
+        //get product Id from URL
+        $productId = $_GET['addHome'];
+        $product->addProductToList($productId);
+        header("Location: index.php");
+    }
 
 ?>
 <!DOCTYPE html>
@@ -25,22 +37,23 @@
 <body>
     <?php include_once("includes/filter.inc.php") ?>
 
-    <main class=container>
+    <main class="container container__eatable">
 
         <div class="selectBtn"><a href="#">SELECTEER</a></div>
-        
+
         <div class="products">
-        <?php foreach($products as $p): ?>
+
+        <?php foreach($stock as $item): ?>
         <li class="product__item">
+
                 <div class="product--box">
 
-                    <a href="detail.php?id=<?php echo $p['id'] ?>"><img class="product__image" src="<?php echo $p['image'] ?>" alt="<?php echo $p['title'] ?>"></a>
-                    
+                    <a href="detail.php?id=<?php echo $item['product_id'] ?>&stockId=<?php echo $item['id'] ?>" class="productLink"><img class="product__image" src="<?php echo $item['image'] ?>" alt="<?php echo $item['title'] ?>"></a>
                     <div class="product__bottom">
-                    <a class="product__add" href="#">&#43;</a>
-                    <?php if($p['freshness']==1):?>
+                    <a class="product__add" data-product="<?php echo $item['product_id'] ?>" href="#"><img src="images/icon/plus.svg" alt="plus"></a>
+                    <?php if($item['freshness']==1):?>
                         <div class='product__dot product__dot--green'></div>
-                        <?php elseif($p['freshness']==2): ?>
+                        <?php elseif($item['freshness']==2): ?>
                         <div class='product__dot product__dot--orange'></div>
                         <?php else: ?>
                         <div class='product__dot product__dot--red'></div> 
@@ -49,11 +62,21 @@
 
                 </div>
 
-                <h2 class="product__title"><?php echo $p['title'] ?></h2>
+                <?php $productId = $item['product_id']; ?>
+                <h2 class="product__title" ><?php echo $item['title'] ?></h2>
         </li>
         <?php endforeach; ?>
         </div>
+        <?php include_once("includes/popupHome.inc.php")?>
+        <?php include_once("includes/confirmation.inc.php") ?>
+
     </main>
+
+    <footer>
     <?php include_once('includes/nav.inc.php') ?>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
