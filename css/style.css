@@ -634,5 +634,28 @@ header h1{
     border-radius: 0.5px;
 }
 
+/*//////////////////////////////////////////////////
+///////////////////// SEARCH ///////////////////////
+//////////////////////////////////////////////////*/
+
+.search__field
+{
+    border-bottom: 1px solid #acaaaa;
+}
+
+.search__field__icon
+{
+    width:20px;
+}
+
+.search__field__input
+{
+   border: none;
+   background-color: #F7F7F7;
+   width: 90%;
+}
+
+
+
 
 

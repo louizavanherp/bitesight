@@ -112,6 +112,36 @@ $(".goBack__btn").on("click", function(e){
     window.history.back(); 
 });
 
+/*//////////////////////////////////////////////////
+///////////////////// SEARCH ///////////////////////
+//////////////////////////////////////////////////*/
+
+$(".search__field__input").keyup(function() {
+    var search = $(".search__field__input").val();
+
+    if(search != ""){
+        $.ajax({
+            method: "POST",
+            url: "ajax/search.ajax.php",
+            data: {search: search}
+        })
+
+        .done(function (res){
+            //delete previous results
+            $(".search__results ul").remove();
+
+            //add items
+            $(".search__results").append(`<ul></ul>`);
+            for (let i = 0; i < res.products.length; i++){
+                var product = `<li><img src="${res.products[i]['image']} ?>" alt="${res.products[i]['title']}"></li>`;
+                $(".search__results ul").append(product);
+            }   
+
+            });
+    }
+    
+});
+
 
 
 
