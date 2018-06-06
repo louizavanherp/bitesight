@@ -248,4 +248,3 @@ $(".search__field__part1").on("click", function(){
 
 
 
-
