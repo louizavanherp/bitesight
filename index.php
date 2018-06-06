@@ -18,7 +18,14 @@
     if(isset($_GET['addHome'])) {
         //get product Id from URL
         $productId = $_GET['addHome'];
-        $product->addProductToList($productId);
+
+        //check if already in database
+        if($product->isOnList($productId)==1){
+            $product->updateList($productId);
+        }
+        else{
+            $product->addProductToList($productId);
+        }
         header("Location: index.php");
     }
 

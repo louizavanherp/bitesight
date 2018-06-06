@@ -95,17 +95,49 @@ class Product{
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getNewProductInfo($product_id){
+        $statement = $this->db->prepare("SELECT * 
+        FROM products
+        WHERE id = :product_id");
+        $statement->bindParam(":product_id", $product_id);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function addProductToList($product_id) {
-        $statement = $this->db->prepare("INSERT INTO list (product_id) VALUES (:product_id)");
+        $statement = $this->db->prepare("INSERT INTO list (product_id, quantity) VALUES (:product_id, :quantity)");
+        $statement->bindValue(":product_id", $product_id);
+        $statement->bindValue(":quantity", 1);
+        $statement->execute();
+    }
+
+    public function isOnList($product_id) {
+        //check if post is reported by current user
+        $statement = $this->db->prepare("SELECT * FROM list WHERE product_id = :product_id");
         $statement->bindValue(":product_id", $product_id);
         $statement->execute();
+        $result = $statement->rowCount();
+        return $result;
+    }
+
+    public function updateList($product_id){
+        $statement = $this->db->prepare("UPDATE list SET quantity = quantity + 1 WHERE product_id = :product_id");
+        $statement->bindValue(":product_id", $product_id);
+        $statement->execute();
+    }
+
+    public function countItemsList($product_id){
+        $statement = $this->db->prepare("SELECT quantity from list WHERE product_id = :product_id");
+        $statement->bindValue(":product_id", $product_id);
+        $result = $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     public function getItemsFromList(){
         $statement = $this->db->prepare
         ("SELECT * 
-        FROM list 
-        INNER JOIN products 
+        FROM products 
+        INNER JOIN list 
         ON products.id = list.product_id");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -121,8 +153,7 @@ class Product{
 		
 		$statement->execute();
 		return $statement->fetchAll(PDO::FETCH_ASSOC);
-	}
-
+    }
 
 }
 

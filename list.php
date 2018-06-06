@@ -7,9 +7,13 @@
     $db = Db::getInstance();
 
     //get products from list
+    $product = new Product($db);
+    $listItems =$product->getItemsFromList();
+
+
     $stockItem = new Stock($db);
     $stock = $stockItem->getAll();
-
+    
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -26,19 +30,19 @@
     <main class="container container__list">
        <h1>BOODSCHAPPENLIJST</h1> 
        <ul class="shoppingList">
-       <?php foreach($stock as $item): ?>
+       <?php foreach($listItems as $item): ?>
         <li class="shoppingList__item">
             <p class="shoppingList__item__title"><?php echo$item['title'] ?></p>
             <div class="calc">
                 <a href="#"><img src="images/icon/min.svg" alt="min"></a>
-                <p>1</p>
+                <p><?php echo $product->countItemsList($item['product_id'])['quantity'] ?></p>
                 <a href="#"><img src="images/icon/plus.svg" alt="plus"></a>
             </div>
             <a class="shoppingList__item__deleteBtn" href="#"><img src="images/icon/trash_red.svg" alt="trash"></a>
         </li>
        <?php endforeach; ?>
        </ul>
-       <a href="#" class="addProduct__btn">Voeg product toe</a>
+       <a href="search.php" class="addProduct__btn">Voeg product toe</a>
     </main>
 
     <footer>

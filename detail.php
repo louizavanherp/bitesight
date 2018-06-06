@@ -12,7 +12,14 @@
     $product = new Product($db);
 
     //get product info
-    $productInfo = $product->getProductInfo($productId);
+    if(isset($_GET['newProduct'])){
+        $productInfo = $product->getNewProductInfo($_GET['id']);
+    }
+    else
+    {
+        $productInfo = $product->getProductInfo($_GET['id']);
+    }
+    
 
     //creat new stockitem object
     $stockItem = new Stock($db);
@@ -27,7 +34,13 @@
     //add product to list 
         //check if user has clicked on add btn
         if(isset($_GET['addDetail'])) {
-            $product->addProductToList($_GET['id']);
+            //check if product is already on list
+            if($product->isOnList($_GET['id'])==1){
+                $product->updateList($_GET['id']);
+            }
+            else{
+                $product->addProductToList($_GET['id']);
+            }
         }
 
 
@@ -57,7 +70,7 @@
                     <p class="productInformation__expiration__txt productInformation__expiration__txt--green">Product is vers</p>
                     <?php elseif($productInfo['freshness']==2):?>
                     <p class="productInformation__expiration__txt productInformation__expiration__txt--orange">Product is nog eetbaar</p>
-                    <?php else: ?>
+                    <?php elseif($productInfo['freshness']==3): ?>
                     <p class="productInformation__expiration__txt productInformation__expiration__txt--red">Opgelet! Product vervalt bijna</p>
                 <?php endif; ?>
 
@@ -66,7 +79,7 @@
                         <div class='product__dot product__dot--green'></div>
                         <?php elseif($productInfo['freshness']==2):?>
                         <div class='product__dot product__dot--orange'></div>
-                        <?php else: ?>
+                        <?php elseif($productInfo['freshness']==3): ?>
                         <div class='product__dot product__dot--red'></div>
                     <?php endif; ?>
                 </div>
@@ -74,7 +87,11 @@
 
             <div class="productInformation__details">
                 <h1 class="productInformation__details__title"><?php echo $productInfo['title'] ?></h1>
-                <p class="productInformation__details__date"><?php echo date("d/m/Y", strtotime($productInfo['date'])) ?></p>
+                    <?php if(isset($_GET['newProduct'])): ?>
+                        <p class="productInformation__details__info--red">Product niet op voorraad</p>
+                    <?php else: ?>
+                        <p class="productInformation__details__date"><?php echo date("d/m/Y", strtotime($productInfo['date'])) ?></p>
+                    <?php endif; ?>
             </div>
 
             <div class="productInformation__actions">
