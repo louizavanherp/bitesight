@@ -10,9 +10,14 @@
     $product = new Product($db);
     $listItems =$product->getItemsFromList();
 
-
     $stockItem = new Stock($db);
     $stock = $stockItem->getAll();
+
+    //delete items from list 
+    if(isset($_GET['delete'])){
+        $product->deleteFromList($_GET['delete']);
+        header("Location: list.php");
+    }
     
 
 ?><!DOCTYPE html>
@@ -32,20 +37,20 @@
        <ul class="shoppingList">
        <?php foreach($listItems as $item): ?>
         <li class="shoppingList__item">
-            <p class="shoppingList__item__title"><?php echo$item['title'] ?></p>
-            <div class="calc">
-                <a href="#"><img src="images/icon/min.svg" alt="min"></a>
-                <p><?php echo $product->countItemsList($item['product_id'])['quantity'] ?></p>
-                <a href="#"><img src="images/icon/plus.svg" alt="plus"></a>
+            <p class="shoppingList__item__title"><?php echo $item['title'] ?></p>
+            <div class="calc"> 
+                <a href="#" class="calc__min" data-id="<?php echo $item['id'] ?>" data-productid="<?php echo $item['product_id'] ?>"><img src="images/icon/min.svg" alt="min"></a>
+                <p class="calc__quantity" id="q<?php echo $item['id'] ?>" ><?php echo $product->countItemsList($item['product_id'])['quantity'] ?></p>
+                <a href="#" class="calc__plus" data-id="<?php echo $item['id'] ?>" data-productid="<?php echo $item['product_id'] ?>"><img src="images/icon/plus.svg" alt="plus"></a>
             </div>
-            <a class="shoppingList__item__deleteBtn" href="#"><img src="images/icon/trash_red.svg" alt="trash"></a>
+            <a class="shoppingList__item__deleteBtn" href="list.php?delete=<?php echo $item['product_id'] ?>"><img src="images/icon/trash_red.svg" alt="trash"></a>
         </li>
        <?php endforeach; ?>
        </ul>
        <a href="search.php" class="addProduct__btn">Voeg product toe</a>
     </main>
 
-    <footer>
+    <footer class="footer footer__list">
         <a href="shop.php" class="goShopping__btn">Ga winkelen</a>
         <?php include_once("includes/nav.inc.php") ?>
     </footer>
