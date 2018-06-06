@@ -10,10 +10,10 @@
     try{
        if(!empty($_POST)){
            if(!empty($_POST['search'])){
-               $feedback['products'] = $product->getSearchedItems($_POST['search']);
-            }
-           $feedback['status'] = "success";
-       }
+            $feedback['products'] = $product->getSearchedItems($_POST['search']);
+           }
+        }
+       $feedback['status'] = "success";
     }catch(Exception $e){
         $feedback['status'] = "error";
     }

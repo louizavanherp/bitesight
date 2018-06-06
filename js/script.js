@@ -119,7 +119,6 @@ $(".goBack__btn").on("click", function(e){
 $(".search__field__input").keyup(function() {
     var search = $(".search__field__input").val();
 
-    if(search != ""){
         $.ajax({
             method: "POST",
             url: "ajax/search.ajax.php",
@@ -127,20 +126,64 @@ $(".search__field__input").keyup(function() {
         })
 
         .done(function (res){
-            //delete previous results
-            $(".search__results ul").remove();
+                //delete previous results
+                $(".search__results ul").remove();
 
-            //add items
-            $(".search__results").append(`<ul></ul>`);
-            for (let i = 0; i < res.products.length; i++){
-                var product = `<li><img src="${res.products[i]['image']} ?>" alt="${res.products[i]['title']}"></li>`;
-                $(".search__results ul").append(product);
-            }   
-
-            });
-    }
+                //add items
+                $(".search__results").append(`<ul></ul>`);
+                for (let i = 0; i < res.products.length; i++){
+                    if(res.products[i]['stock']==1){
+                        var product = `<li class="search__results__listItem"><a href="detail.php?id=${res.products[i]['id']}"><img src="${res.products[i]['image']} ?>" alt="${res.products[i]['title']}"> <div class="search__results__txt"><p class="search__results__txt__title"> ${res.products[i]['title']} </p> <p class="search__results__txt__stock">Momenteel op voorraad</p></div></a></li>`;
+                    }
+                    else
+                    {
+                        var product = `<li class="search__results__listItem"><a href="detail.php?id=${res.products[i]['id']}&newProduct=1"><img src="${res.products[i]['image']} ?>" alt="${res.products[i]['title']}"> <div class="search__results__txt"><p class="search__results__txt__title"> ${res.products[i]['title']} </p> <p class="search__results__txt__stock">Niet op voorraad</p></div></a></li>`;
+                    }
+                    $(".search__results ul").append(product);
+                }
+        });
     
 });
+
+
+/********** click on search field  ********/
+
+$(".search__field__part1").on("click", function(){
+
+    //move search field
+    $(".search__field").animate({"padding-left": "2em"}, "fast");
+
+    //background-color white 
+    $(".search__field").css("background-color", "white");
+    $(".search__field__input").css("background-color", "white");
+
+    //add closing cross
+    $(".search__field__cross").css("display", "block");
+
+});
+
+    /*cross click close*/
+    $(".search__field__cross").on("click", function(e){
+        //move search field
+        $(".search__field").animate({"padding-left": "0em"}, "fast");
+
+        //background-color grey 
+        $(".search__field").css("background-color", "#F7F7F7");
+        $(".search__field__input").css("background-color", "#F7F7F7");
+
+        //hide cross
+        $(".search__field__cross").css("display", "none");
+
+        //remove content input field
+        $(".search__field__input").val('');
+
+        //remove searched items 
+        $(".search__results ul").remove();
+    });
+
+
+
+
 
 
 

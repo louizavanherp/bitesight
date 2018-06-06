@@ -394,7 +394,7 @@ a{
     color: #E8803B;
 }
 
-.productInformation__expiration__txt--red
+.productInformation__expiration__txt--red, .productInformation__details__info--red
 {
     color: #CA353B;
 }
@@ -640,20 +640,87 @@ header h1{
 
 .search__field
 {
-    border-bottom: 1px solid #acaaaa;
+    border-bottom: 1px solid #dddcdc;
+    display: grid;
+    grid-template-columns: 80% 30px;
+    align-items:center;
+}
+
+.search__field__part1
+{
+    display:grid;
+    align-items:center;
+    grid-template-columns: 40px 80%;
 }
 
 .search__field__icon
 {
     width:20px;
+    margin: 10px;
 }
 
 .search__field__input
 {
    border: none;
    background-color: #F7F7F7;
-   width: 90%;
+   width: 80%;
+   padding-left: 0.5em;
 }
+
+.search__field__cross
+{
+    width: 10px;
+    padding-right: 20px;
+    display:none;
+}
+
+.search__results ul 
+{
+    padding: 0;
+    margin: 0;
+}
+
+.search__results__listItem
+{
+    list-style-type:none;
+    background-color: white;
+    padding: 1em 3em;
+}
+
+.search__results__listItem a
+{
+    color: black;
+    display:grid;
+    grid-template-columns: 100px 200px;
+}
+
+.search__results__listItem:not(:last-child)
+{
+    border-bottom: 1px solid rgb(216, 216, 216);
+}
+
+.search__results__listItem img
+{
+    width:80px;
+}
+
+.search__results__txt__title
+{
+    font-weight:bold;
+    margin-bottom: 0.5em;
+}
+
+.search__results__txt__stock
+{
+    font-style: italic;
+    font-weight:lighter;
+    margin-top:0;
+}
+
+
+
+
+
 
 
 

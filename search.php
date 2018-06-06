@@ -8,6 +8,7 @@
 
     //get products from list
     $product = new Product($db);
+    
 
 
 ?><!DOCTYPE html>
@@ -24,9 +25,13 @@
 
     <main class="container container__search">
         <div class="search__field">
+            <div class="search__field__part1">
             <img class="search__field__icon" src="images/icon/search.svg" alt="">
-            <input class="search__field__input" name="search" type="text" placeholder="zoek product..">
+            <input class="search__field__input" name="search" type="text" placeholder="Zoek product...">
+            </div>
+            <p class="search__field__cross">&#x2715;</p>
         </div>
+       
 
         <div class="search__results">
         </div>
