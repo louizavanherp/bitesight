@@ -69,7 +69,7 @@ $(".product__add").on("click", function(e){
         editBoxDelete.css("display", "none");
     });
 
-    
+        
 /******* POPUP TOEVOEGEN *******/
 
 //get popup 
@@ -102,6 +102,63 @@ $(close).on("click", function(){
          });
         
     });*/
+
+/*//////////////////////////////////////////////////
+//////////////////////// LIST //////////////////////
+//////////////////////////////////////////////////*/
+
+//when click on min  
+$(".calc__min").on("click", function(e){
+    //get productid
+    var productId = $(this).data("productid");
+    //get quantity 
+    var quantity = $(this).parent().find(".calc__quantity").html();
+    //get id 
+    var listId = $(this).data("id");
+    
+    $.ajax({
+        method: "POST",
+        url: "ajax/listminus.ajax.php",
+        data: {quantity: quantity,
+                listId : listId,
+                productId : productId,
+              }
+    })
+
+    .done(function(res){
+        if(res.status = "success"){
+            $("#q"+res.listId).html(res.quantity);
+        }
+    });
+});
+
+
+
+//when click on plus 
+$(".calc__plus").on("click", function(e){
+    //get product id 
+    var productId = $(this).data("productid");
+    console.log(productId);
+    //get quantity 
+    var quantity = $(this).parent().find(".calc__quantity").html();
+    //get list id 
+    var listId = $(this).data("id");
+    
+    $.ajax({
+        method: "POST",
+        url: "ajax/listplus.ajax.php",
+        data: {quantity: quantity,
+                listId : listId,
+                productId : productId,
+              }
+    })
+
+    .done(function(res){
+        if(res.status = "success"){
+            $("#q"+res.listId).html(res.quantity);
+        }
+    });
+});
 
 
 /*//////////////////////////////////////////////////

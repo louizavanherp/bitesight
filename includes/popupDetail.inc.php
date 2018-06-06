@@ -1,5 +1,5 @@
 <div class="popup">
-<?php $title = $product->getProductInfo($productId)['title'];?>
+<?php $title = $productInfo['title']?>
 <?php $id = $_GET['id'] ?>
           <!-- popup content -->
           <div class="popup-content">

@@ -126,6 +126,12 @@ class Product{
         $statement->execute();
     }
 
+    public function updateListMin($product_id){
+        $statement = $this->db->prepare("UPDATE list SET quantity = quantity - 1 WHERE product_id = :product_id");
+        $statement->bindValue(":product_id", $product_id);
+        $statement->execute();
+    }
+
     public function countItemsList($product_id){
         $statement = $this->db->prepare("SELECT quantity from list WHERE product_id = :product_id");
         $statement->bindValue(":product_id", $product_id);
@@ -141,6 +147,12 @@ class Product{
         ON products.id = list.product_id");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function deleteFromList($product_id){
+        $statement = $this->db->prepare("DELETE FROM LIST WHERE product_id = :product_id");
+        $statement->bindValue(":product_id", $product_id);
+        $statement->execute();
     }
 
     public function getSearchedItems($p_product=null)
