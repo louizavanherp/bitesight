@@ -24,6 +24,10 @@ a{
     width:10px;
 }
 
+.container{
+    padding-bottom: 5em;
+}
+
 
 /*//////////////////////////////////////////////////
 ////////////////////// NAV /////////////////////////
@@ -544,7 +548,7 @@ a{
     color:#A0CEBA;
 }
 
-.goShopping__btn
+.goShopping__btn, .account__invitation
 {
     color:#302D2A;
     background-color:#EBB24C;
@@ -716,6 +720,117 @@ header h1{
     font-weight:lighter;
     margin-top:0;
 }
+
+/*//////////////////////////////////////////////////
+//////////////////// ACCOUNT ///////////////////////
+//////////////////////////////////////////////////*/
+.container__account{
+    display:grid;
+    justify-items: center;
+}
+
+.account__basicInformation
+{
+    display:grid;
+    grid-template-columns: 80% 20%;
+    grid-template-rows:  20% 80%;
+    width:100%;
+    margin-top: 2em;
+    margin-bottom:2em;
+}
+
+.account__basicInfomation__icon 
+{
+    grid-column: 2fr / 3fr;
+}
+
+.account__basicInformation__icon img
+{
+    width: 25px;
+}
+
+.account__basicInformation__details
+{
+    grid-column: 1fr / 2fr;
+    text-align:center;
+}
+
+.account__basicInformation__details__name
+{
+    font-weight:bold;
+    font-size: 1.2em;
+    margin-left:75px;
+}
+
+.account__basicInformation__details__email
+{
+    margin-left:75px;
+}
+
+.account__changePassword
+{
+    width:100%;
+    text-align:center;
+}
+
+.account__changePassword__link
+{
+    color: #EDBA5F;
+    font-weight: 800;
+    font-size: .9em;
+    border-bottom: 1px solid #E5E3E3;
+    border-top: 1px solid #E5E3E3;
+    width:100%;
+    display:inline-block;
+    padding-bottom: 0.8em;
+    padding-top: 0.8em;
+}
+
+.account__household
+{
+    display:grid;
+    padding-top: 3em;
+    justify-items: start;
+}
+
+.account__household__title
+{
+    font-weight: bold;
+    text-align:center;
+}
+
+.account__household__newMember{
+    align-items: end;
+    display:grid;
+    grid-template-columns: 25px 1fr;
+    grid-gap:0.7em;
+}
+
+.account__household__newMember img
+{
+    width: 25px;
+}
+
+.account__household__newMember input
+{
+    border-style:none;
+    border-bottom: 1px solid #E5E3E3;
+    background-color: #F7F7F7;
+}
+
+.account__household__members
+{
+    padding-left: 0;
+}
+
+
+.account__household__members li
+{
+    list-style-type:none;
+    margin-bottom: 1em;
+}
+
+
 
 
 
