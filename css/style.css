@@ -18,14 +18,14 @@ a{
     text-decoration:none;
 }
 
-.goBack__btn
+.goBack__btn img
 {
     margin-left:30px;
     width:10px;
 }
 
 .container{
-    padding-bottom: 5em;
+    padding-bottom: 10em;
 }
 
 
@@ -347,14 +347,23 @@ a{
     position: fixed;
     bottom:5em;
 }
-.confirmationBox a
+.confirmationBox__list a
 {
     text-decoration: none;
-    color: white;
     display: inline-block;
+}
+
+.confirmationBox a, .confirmationBox p{
+    color: white;
     background-color: #96C9B3;
     padding: 1em 2em;
     border-radius: 5em;
+    width: 200px;
+    margin: 1em auto;
+}
+
+.confirmationBox__invitation{
+    bottom: 6em;
 }
 
 
@@ -469,7 +478,7 @@ a{
     background-color: #F7F7F7;
 }
 
-.container__list h1, .container__shop h1, .container__detail header h1{
+.container__list h1, .container__shop h1, .container__detail header h1, .container__edit header h1, .container__password header h1{
     text-align:center;
     padding:0.5em;
 }
@@ -548,7 +557,7 @@ a{
     color:#A0CEBA;
 }
 
-.goShopping__btn, .account__invitation
+.goShopping__btn, .account__invitation, .edit__save, .password__save
 {
     color:#302D2A;
     background-color:#EBB24C;
@@ -585,7 +594,7 @@ a{
     padding-right:40px;
 }
 
-.container__shop header, .container__detail header{
+.container__shop header, .container__detail header, .container__edit header, .container__password header{
     display:grid;
     grid-template-columns: 55px 1fr;
     align-items:center;
@@ -806,7 +815,7 @@ header h1{
     grid-gap:0.7em;
 }
 
-.account__household__newMember img
+.account__household__newMember img:first-child
 {
     width: 20px;
 }
@@ -814,21 +823,115 @@ header h1{
 .account__household__newMember input
 {
     border-style:none;
-    border-bottom: 1px solid #E5E3E3;
     background-color: #F7F7F7;
 }
+
+.account__household__newMember img:last-child
+{
+    width: 15px;
+}
+
+.account__household__newMember__submit{
+    border-bottom: 1px solid #E5E3E3;
+}
+
+.account__household__newMember 
 
 .account__household__members
 {
     padding-left: 0;
 }
 
+.account__household__member{
+    display:grid;
+    grid-template-columns: 170px 1fr;
+}
 
-.account__household__members li
+.account__household__member li
 {
     list-style-type:none;
     margin-bottom: 1em;
 }
+
+.account__household__member a img
+{
+    width:10px;
+}
+
+/*//////////////////////////////////////////////////
+///////////////////// EDIT /////////////////////////
+//////////////////////////////////////////////////*/
+
+.edit__username, .edit__email{
+    display:grid;
+    grid-template-columns: 50px 270px;
+    justify-content: center;
+}
+
+.edit__email{
+    margin-top: 3em;
+}
+
+.edit__username__txt, .edit__email__txt__input{
+    display:grid; 
+    grid-template-rows: 30px 30px;
+}
+
+.edit__username__icon, .edit__email__icon
+{
+    width: 20px;
+    margin: 10px 20px 0 10px;
+    align-self: end;
+}
+
+.edit__username__txt__title, .edit__email__txt__title
+{
+    color: #ECB85A;
+    font-size: 0.7em;
+    height: 0.7em;
+    margin: 0;
+    align-self:center;
+}
+
+.edit__email__txt__title{
+    margin-bottom: 0.5em;
+}
+
+.edit__username__txt__input, .edit__email__txt__input
+{
+    border: none;
+    background-color: #F7F7F7; 
+    border-bottom: 1px solid black;
+    width: 270px;
+    height: 20px;
+    font-weight: 600;
+}
+
+/*//////////////////////////////////////////////////
+///////////////////// EDIT /////////////////////////
+//////////////////////////////////////////////////*/
+
+.password{
+    display: grid; 
+    justify-content: center;
+    margin-top: 2em;
+}
+
+.password input{
+    border: none;
+    background-color: #F7F7F7;
+    border-bottom: 1px solid #312E2B;
+    width: 300px;
+    margin-bottom: 3em;
+    padding-bottom: 0.5em;
+}
+
+.password input::-webkit-input-placeholder
+{
+    color: #ECB85A;
+}
+
+
 
 
 

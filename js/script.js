@@ -97,8 +97,8 @@ $(close).on("click", function(){
     //when item added to list, show confirmation message
     /*$('.popup-addBtn').on("click", function(e){
         
-        $('.confirmationBox').fadeIn('slow', function(){
-            $('.confirmationBox').delay(4000).fadeOut(); 
+        $('.confirmationBox__list').fadeIn('slow', function(){
+            $('.confirmationBox__list').delay(4000).fadeOut(); 
          });
         
     });*/
@@ -238,8 +238,125 @@ $(".search__field__part1").on("click", function(){
         $(".search__results ul").remove();
     });
 
+/*//////////////////////////////////////////////////
+///////////////////// ACCOUNT //////////////////////
+//////////////////////////////////////////////////*/
+
+/**** new member *****/
+$(".account__household__newMember__submit__link").on("click", function(e){
+    var email = $(".account__household__newMember__submit__input").val();
+
+    $.ajax({
+        method: "POST",
+        url: "ajax/account.ajax.php",
+        data: {email: email}
+    })
+
+    .done(function (res){
+        if(res.status == "success"){
+            if(res.email != ""){
+                //make new li item with email 
+                var newMember = `<div style='display:none' class="account__household__member">
+                <li>${res.email}</li>
+                <a class='account__household__member__close' href="#"><img src="images/icon/cross.svg" alt="close"></a>
+                </div>`;
+                //prepend list item to ul 
+                $(".account__household__members").prepend(newMember);
+                //use animation 
+                $('.account__household__member').first().slideDown();
+                //empty value in input 
+                $('.account__household__newMember__submit__input').val('');
+
+                $(".account__household__member__close").on("click", function(e){
+                    $(this).parent().remove();
+                });
+            }
+        }
+    });
+
+    e.preventDefault();
+});
+
+/****** delete member ******/
+$(".account__household__member__close").on("click", function(e){
+    console.log("geklikt");
+    e.preventDefault();
+});
+
+/****** invitation sent ******/
+$(".account__invitation").on("click", function(e){
+
+    if($(".account__household__member").length >0){
+        //show confirmationBox
+        $('.confirmationBox__invitation').fadeIn('slow', function(){
+        $('.confirmationBox__invitation').delay(2000).fadeOut(); 
+        });
+
+        //empty value in input 
+        $('.account__household__newMember__submit__input').val('');
+
+        //remove emails 
+        $(".account__household__member").remove();
+    }
+    e.preventDefault();
+});
 
 
+/*//////////////////////////////////////////////////
+/////////////////////// EDIT ///////////////////////
+//////////////////////////////////////////////////*/
+
+$(".edit__save").on("click", function(e){
+    var name = $(".edit__username__txt__input").val();
+    var email = $(".edit__email__txt__input").val()
+
+    $.ajax({
+        method: "POST",
+        url: "ajax/edit.ajax.php",
+        data: {email: email,
+               name: name,
+              }
+    })
+
+    .done(function (res){
+        if(res.status == "success"){
+            window.location = "account.php";
+        }
+    });
+
+    e.preventDefault();
+});
+
+/*//////////////////////////////////////////////////
+///////////////////// PASSWORD /////////////////////
+//////////////////////////////////////////////////*/
+
+$(".password__save").on("click", function(e){
+    var password = $(".password__currentPw").val();
+    var newPassword = $(".password__newPw").val()
+    var newPasswordConfirmation = $(".password__confirmPw").val();
+
+    $.ajax({
+        method: "POST",
+        url: "ajax/password.ajax.php",
+        data: {password: password,
+               newPassword: newPassword,
+               newPasswordConfirmation: newPasswordConfirmation,
+              }
+    })
+
+    .done(function (res){
+        if(res.status == "success"){
+                window.location = "account.php";
+        }
+        else{
+            $(".passwordInput").css("border-bottom", "1px solid red");
+            $(".passwordInput").val('');
+        }
+    });
+
+    e.preventDefault();
+});
 
 
 
