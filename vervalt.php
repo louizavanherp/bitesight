@@ -7,7 +7,7 @@
     $db = Db::getInstance();
 
     //get fresh products in stock
-    $stockItemFresh = new stock($db);
+    $stockItemFresh = new Stock($db);
     $stock = $stockItemFresh->getExpired();
 
     //new product object

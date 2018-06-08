@@ -1,13 +1,16 @@
 <?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', 'On');
+
     spl_autoload_register(function($class) {
-        include_once("classes/" . $class . ".class.php");
+        include_once($_SERVER["DOCUMENT_ROOT"]. "/bitesight/classes/" . $class . ".class.php");
     });
 
     //create database connection
     $db = Db::getInstance();
 
     //get all products in stock
-    $stockItem = new stock($db);
+    $stockItem = new Stock($db);
     $stock = $stockItem->getAll();
 
     //new product object

@@ -7,7 +7,7 @@
     $db = Db::getInstance();
 
     //create new user 
-    $user = new user($db);
+    $user = new User($db);
 
 ?><!DOCTYPE html>
 <html lang="en">

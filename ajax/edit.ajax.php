@@ -8,7 +8,7 @@
     $db = Db::getInstance();
 
     //create new user 
-    $user = new user($db);
+    $user = new User($db);
 
     try{
         //edit information 
