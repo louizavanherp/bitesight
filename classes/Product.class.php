@@ -104,10 +104,10 @@ class Product{
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function addProductToList($product_id) {
+    public function addProductToList($product_id, $quantity) {
         $statement = $this->db->prepare("INSERT INTO list (product_id, quantity) VALUES (:product_id, :quantity)");
         $statement->bindValue(":product_id", $product_id);
-        $statement->bindValue(":quantity", 1);
+        $statement->bindValue(":quantity", $quantity);
         $statement->execute();
     }
 
@@ -120,9 +120,10 @@ class Product{
         return $result;
     }
 
-    public function updateList($product_id){
-        $statement = $this->db->prepare("UPDATE list SET quantity = quantity + 1 WHERE product_id = :product_id");
+    public function updateList($product_id, $count){
+        $statement = $this->db->prepare("UPDATE list SET quantity = quantity + :count WHERE product_id = :product_id");
         $statement->bindValue(":product_id", $product_id);
+        $statement->bindValue(":count", $count);
         $statement->execute();
     }
 
@@ -144,7 +145,9 @@ class Product{
         ("SELECT * 
         FROM products 
         INNER JOIN list 
-        ON products.id = list.product_id");
+        ON products.id = list.product_id
+        ORDER BY list.product_id DESC
+        ");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }

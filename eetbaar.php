@@ -24,10 +24,10 @@
 
         //check if already in database
         if($product->isOnList($productId)==1){
-            $product->updateList($productId);
+            $product->updateList($productId,1);
         }
         else{
-            $product->addProductToList($productId);
+            $product->addProductToList($productId,1);
         }
         header("Location: eetbaar.php");
     }

@@ -23,6 +23,9 @@ $(".product__add").on("click", function(e){
         }
     });
 });
+/*//////////////////////////////////////////////////
+/////////////// ADD BOX HOME PAGE //////////////////
+//////////////////////////////////////////////////*/
 
 /*//////////////////////////////////////////////////
 ////////////// EDIT BOX DETAIL PAGE ////////////////
@@ -104,15 +107,67 @@ $(close).on("click", function(){
     });*/
 
 /*//////////////////////////////////////////////////
+////////////// ADD BOX DETAIL PAGE ////////////////
+//////////////////////////////////////////////////*/
+
+//change value when click on min
+$(".calc__min--detail").on("click", function(e){
+    var quantity = $(".calc__quantity--detail").html();
+
+    
+    if(quantity > 1){
+        //change value
+        quantity = --quantity;
+
+        //put new value in html 
+        $(".calc__quantity--detail").html(quantity);
+    }
+});
+
+//change value when click on plus
+$(".calc__plus--detail").on("click", function(e){
+    var quantity = $(".calc__quantity--detail").html();
+
+    //change value
+    quantity = ++quantity;
+
+    //put new value in html 
+    $(".calc__quantity--detail").html(quantity);
+});
+
+
+$(".popup-addBtn").on("click", function(e){
+    var quantity = $(".calc__quantity--detail").html();
+    var productid = $(".popup-txt").data("productid");
+
+    $.ajax({
+        method: "POST",
+        url: "ajax/addDetail.ajax.php",
+        data: {quantity: quantity,
+                productid : productid,
+              }
+    })
+
+    .done(function(res){
+        if(res.status = "success"){
+            //close popup 
+            popup.css("display", "none");
+        }
+    });
+
+    e.preventDefault();
+});
+
+/*//////////////////////////////////////////////////
 //////////////////////// LIST //////////////////////
 //////////////////////////////////////////////////*/
 
 //when click on min  
-$(".calc__min").on("click", function(e){
+$(".calc__min--list").on("click", function(e){
     //get productid
     var productId = $(this).data("productid");
     //get quantity 
-    var quantity = $(this).parent().find(".calc__quantity").html();
+    var quantity = $(this).parent().find(".calc__quantity--list").html();
     //get id 
     var listId = $(this).data("id");
     
@@ -135,12 +190,12 @@ $(".calc__min").on("click", function(e){
 
 
 //when click on plus 
-$(".calc__plus").on("click", function(e){
+$(".calc__plus--list").on("click", function(e){
     //get product id 
     var productId = $(this).data("productid");
     console.log(productId);
     //get quantity 
-    var quantity = $(this).parent().find(".calc__quantity").html();
+    var quantity = $(this).parent().find(".calc__quantity--list").html();
     //get list id 
     var listId = $(this).data("id");
     

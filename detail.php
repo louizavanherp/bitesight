@@ -33,18 +33,6 @@
             $stockItem->deleteProduct($_GET['delete']);
             header("Location: index.php");
         }
-    
-    //add product to list 
-        //check if user has clicked on add btn
-        if(isset($_GET['addDetail'])) {
-            //check if product is already on list
-            if($product->isOnList($_GET['id'])==1){
-                $product->updateList($_GET['id']);
-            }
-            else{
-                $product->addProductToList($_GET['id']);
-            }
-        }
 
 
 ?><!DOCTYPE html>

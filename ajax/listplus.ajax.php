@@ -7,7 +7,7 @@
     $db = Db::getInstance();
 
     $product = new Product($db);
-    $product->updateList($_POST['productId']);
+    $product->updateList($_POST['productId'],1);
 
     try{
         $quantity = $_POST['quantity'];
