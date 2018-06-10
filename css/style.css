@@ -104,6 +104,9 @@ a{
     position: fixed;
     top: 0; 
     width: 100%;
+    background-color:#F7F7F7;
+    margin-top:0;
+    padding-top: 1em;
 }
 
 .filter__item{
@@ -132,13 +135,20 @@ a{
     display:grid;
     grid-template-columns: repeat(auto-fill,minmax(170px,1fr));
     justify-items:center;
+    margin-top:7em;
 }
 
 .selectBtn
 {
-    margin-top:5em;
-    margin-bottom: 2em;
-    margin-left:1em;
+    margin-top:3em;
+    padding-top:1em;
+    padding-left:1em;
+    padding-bottom: 0.5em;
+    overflow: hidden;
+    position: fixed;
+    top: 0; 
+    background-color:#F7F7F7;
+    width: 100%;
 }
 
 .selectBtn a{
@@ -146,6 +156,8 @@ a{
     color: #EBB24C;
     font-weight: 800;
     letter-spacing: 0.5px;
+    margin-top:-1em;
+    padding-top:0;
 }
 
 .product__item
@@ -266,7 +278,11 @@ a{
 .popup-content h1{
     text-align:center;
     padding-top: 20px;
-    margin-bottom: 3em;
+    margin-bottom: 1em;
+}
+
+.calc__quantity--detail, .calc__quantity--home{
+    font-weight:bold;
 }
 
 /* The Close Button */

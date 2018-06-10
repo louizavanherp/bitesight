@@ -158,6 +158,12 @@ class Product{
         $statement->execute();
     }
 
+    public function outOfStock($product_id){
+        $statement = $this->db->prepare("UPDATE products SET stock = 0 WHERE id = :product_id");
+        $statement->bindValue(":product_id", $product_id);
+        $statement->execute();
+    }
+
     public function getSearchedItems($p_product=null)
 	{
 		if($p_product != "")

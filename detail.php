@@ -9,6 +9,8 @@
     // create database connection
     $db = Db::getInstance(); 
 
+    
+
     // get product id
     $productId = $_GET['id'];
     //create product object
@@ -30,6 +32,7 @@
     //delete product
         //check if user has clicked on delete btn
         if(isset($_GET['delete'])) {
+            $product->outOfStock($_GET['delete']);
             $stockItem->deleteProduct($_GET['delete']);
             header("Location: index.php");
         }

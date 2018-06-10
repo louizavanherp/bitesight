@@ -12,7 +12,7 @@
                 <p class="calc__quantity calc__quantity--detail">1</p>
                 <a href="#" class="calc__plus calc__plus--detail"><img src="images/icon/plus.svg" alt="plus"></a>
             </div>
-            <a class="popup-addBtn" href="?id=<?php echo $id ?>&addDetail=<?php echo $id ?>">Voeg toe</a>
+            <a class="popup-addBtn popup-addBtn--detail" href="?id=<?php echo $id ?>&addDetail=<?php echo $id ?>">Voeg toe</a>
           </div>       
   </div>
 

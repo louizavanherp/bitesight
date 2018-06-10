@@ -16,21 +16,6 @@
     //new product object
     $product = new Product($db);
 
-    //add product to list
-    //check if user has clicked on add btn
-    if(isset($_GET['addHome'])) {
-        //get product Id from URL
-        $productId = $_GET['addHome'];
-
-        //check if already in database
-        if($product->isOnList($productId)==1){
-            $product->updateList($productId,1);
-        }
-        else{
-            $product->addProductToList($productId,1);
-        }
-        header("Location: index.php");
-    }
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -47,8 +32,6 @@
     <?php include_once("includes/filter.inc.php") ?>
     
     <main class="container container__home">
-
-        <div class="selectBtn"><a href="#">SELECTEER</a></div>
     
         <div class="products">
 

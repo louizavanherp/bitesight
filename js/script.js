@@ -18,6 +18,9 @@ $(".product__add").on("click", function(e){
             //add title to popup 
             $title = `<h1 class="popup-txt">${res.title}</h1>`;
             $(".popup-header").append($title);
+
+            //add productid to data attribute popup-header
+            $('.popup-header').attr('data-productid', res.product);
             //fill in href with id 
             $(".popup-addBtnHome").attr("href", `?addHome=${res.product}`);
         }
@@ -26,6 +29,55 @@ $(".product__add").on("click", function(e){
 /*//////////////////////////////////////////////////
 /////////////// ADD BOX HOME PAGE //////////////////
 //////////////////////////////////////////////////*/
+
+//change value when click on min
+$(".calc__min--home").on("click", function(e){
+    var quantity = $(".calc__quantity--home").html();
+
+    
+    if(quantity > 1){
+        //change value
+        quantity = --quantity;
+
+        //put new value in html 
+        $(".calc__quantity--home").html(quantity);
+    }
+});
+
+//change value when click on plus
+$(".calc__plus--home").on("click", function(e){
+    var quantity = $(".calc__quantity--home").html();
+
+    //change value
+    quantity = ++quantity;
+
+    //put new value in html 
+    $(".calc__quantity--home").html(quantity);
+});
+
+
+$(".popup-addBtnHome").on("click", function(e){
+    var quantity = $(".calc__quantity--home").html();
+    var productid = $(this).parent().find(".popup-header").data("productid");
+
+    $.ajax({
+        method: "POST",
+        url: "ajax/addToList.ajax.php",
+        data: {quantity: quantity,
+                productid : productid,
+              }
+    })
+
+    .done(function(res){
+        if(res.status = "success"){
+            //close popup 
+            popup.css("display", "none");
+        }
+    });
+
+
+    e.preventDefault();
+});
 
 /*//////////////////////////////////////////////////
 ////////////// EDIT BOX DETAIL PAGE ////////////////
@@ -136,13 +188,13 @@ $(".calc__plus--detail").on("click", function(e){
 });
 
 
-$(".popup-addBtn").on("click", function(e){
+$(".popup-addBtn--detail").on("click", function(e){
     var quantity = $(".calc__quantity--detail").html();
     var productid = $(".popup-txt").data("productid");
 
     $.ajax({
         method: "POST",
-        url: "ajax/addDetail.ajax.php",
+        url: "ajax/addToList.ajax.php",
         data: {quantity: quantity,
                 productid : productid,
               }

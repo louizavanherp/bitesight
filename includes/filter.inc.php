@@ -10,4 +10,5 @@
         <li class="filter__item"><a href="eetbaar.php" class="<?php if($parts[count($parts)-1] == "eetbaar.php") echo "active"; ?>">Eetbaar</a></li>
         <li class="filter__item"><a href="vervalt.php" class="<?php if($parts[count($parts)-1] == "vervalt.php") echo "active"; ?>">vervalt</a></li>
     </ul>
+    <div class="selectBtn"><a href="#">SELECTEER</a></div>   
 </header>
