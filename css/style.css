@@ -948,6 +948,30 @@ header h1{
 }
 
 
+/*//////////////////////////////////////////////////
+///////////////////// FILTER ///////////////////////
+//////////////////////////////////////////////////*/
+.container__graphic
+{
+    padding-bottom: 3em;
+    display:grid;
+    justify-content: center;
+    justify-items: center;
+}
+
+.graphic__txt{
+    font-weight:bold;
+    font-size: 1.3em;
+    padding-top:1.5em;
+    padding-bottom:1em;
+}
+
+.graphic__image
+{
+    width: 100%;
+}
+
+
 
 
 
