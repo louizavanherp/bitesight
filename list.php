@@ -41,7 +41,7 @@
        <a href="search.php" class="addProduct__btn">Voeg product toe</a>
        </div>
 
-       <ul class="shoppingList">
+        <ul class="shoppingList">
        <?php foreach($listItems as $item): ?>
         <li class="shoppingList__item">
             <p class="shoppingList__item__title"><?php echo $item['title'] ?></p>
@@ -50,14 +50,13 @@
                 <p class="calc__quantity calc__quantity--list" id="q<?php echo $item['id'] ?>" ><?php echo $product->countItemsList($item['product_id'])['quantity'] ?></p>
                 <a href="#" class="calc__plus calc__plus--list" data-id="<?php echo $item['id'] ?>" data-productid="<?php echo $item['product_id'] ?>"><img src="images/icon/plus.svg" alt="plus"></a>
             </div>
-            <a class="shoppingList__item__deleteBtn" data-productid="<?php echo $item['product_id'] ?>" href="#"><img src="images/icon/trash_red.svg" alt="trash"></a>
+            <a class="shoppingList__item__deleteBtn" href="list.php?delete=<?php echo $item['product_id'] ?>"><img src="images/icon/trash_red.svg" alt="trash"></a>
         </li>
-       <?php endforeach; ?>
        </ul>
+       <?php endforeach; ?>
     </main>
 
     <footer class="footer footer__list">
-        <?php include_once("includes/editDeleteList.inc.php") ?>
         <a href="shop.php" class="goShopping__btn">Ga winkelen</a>
         <?php include_once("includes/nav.inc.php") ?>
     </footer>
