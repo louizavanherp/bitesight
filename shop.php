@@ -36,7 +36,7 @@
         <li class="shop__item">
             <p class="shop__item__title"><?php echo$p['title'] ?></p>
             <div class="shop__item__count">
-                <p>1</p>
+                <p><?php echo $p['quantity'] ?></p>
             </div>
         </li>
        <?php endforeach; ?>
@@ -48,7 +48,7 @@
             <h2 class="subtotal__title">Subtotaal</h2>
             <p class="subtotal__price">€ 14,95</p>
         </div>
-        <div class="pay__btn"><a href="#">Betaal</a></div>
+        <div class="pay__btn"><a href="payed.php">Betaal</a></div>
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
