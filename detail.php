@@ -101,6 +101,7 @@
         <?php include_once("includes/editEat.inc.php")?>
         <?php include_once("includes/editDelete.inc.php")?>
         <?php include_once("includes/popupDetail.inc.php") ?>
+        <?php include_once("includes/confirmation.inc.php") ?>
         <?php include_once("includes/nav.inc.php") ?>
     </footer>
 
