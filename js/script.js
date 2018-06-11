@@ -204,6 +204,11 @@ $(".popup-addBtn--detail").on("click", function(e){
         if(res.status = "success"){
             //close popup 
             popup.css("display", "none");
+        
+            $('.confirmationBox__list').fadeIn('slow', function(){
+            $('.confirmationBox__list').delay(2000).fadeOut(); 
+            });
+
         }
     });
 
@@ -265,6 +270,42 @@ $(".calc__plus--list").on("click", function(e){
             $("#q"+res.listId).html(res.quantity);
         }
     });
+});
+
+/*********** delete item **********/
+$(".shoppingList__item__deleteBtn").on("click", function(e){
+    //show popup 
+    //$(".editBox--list").css("display", "block");
+    $(".editBox--list").css("display", "block");
+
+    var productid = $(this).data("productid");
+
+    //when click on delete, delete item from list
+    $(".editBox__conent__btn--list").on("click", function(e){
+    
+        /*$.ajax({
+            method: "POST",
+            url: "ajax/deleteList.ajax.php",
+            data: { productid : productid }
+        })
+    
+        .done(function(res){
+            if(res.status = "success"){
+                
+            }
+        });*/
+    
+    });
+
+    e.preventDefault();
+});
+
+//annuleer btn
+$(".editBox__content__cancel--list").on("click", function(e){
+    //hide popup
+    $(".editBox--list").css("display", "none");
+
+    e.preventDefault();
 });
 
 

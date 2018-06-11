@@ -316,6 +316,7 @@ a{
 //////////////////// EDIT BOX //////////////////////
 //////////////////////////////////////////////////*/
 
+
 .editBox__content
 {
     display:grid;
@@ -472,16 +473,11 @@ a{
 
 /****** edit box eat  ******/ 
 
-.editBox__eat
+.editBox
 {
     display:none;
 }
 
-/****** edit box eat  ******/ 
-.editBox__delete
-{
-    display: none;
-}
 
 /*//////////////////////////////////////////////////
 ///////////////////// LISTS ////////////////////////
@@ -497,6 +493,19 @@ a{
 .container__list h1, .container__shop h1, .container__detail header h1, .container__edit header h1, .container__password header h1{
     text-align:center;
     padding:0.5em;
+}
+
+.list__header{
+    position: fixed;
+    overflow:hidden;
+    background-color: #F7F7F7;
+    width: 100%;
+    top:0;
+    padding-bottom: 1em;
+}
+
+.shoppingList{
+    margin-top: 6em;
 }
 
 .shoppingList, .shopList
@@ -562,7 +571,7 @@ a{
     width:15px;
 }
 
-.addProduct__btn, .scanProducts__btnf
+.addProduct__btn, .scanProducts__btn
 {
     font-size:1.1em;
     font-weight:600;
@@ -573,7 +582,7 @@ a{
     color:#A0CEBA;
 }
 
-.goShopping__btn, .account__invitation, .edit__save, .password__save
+.goShopping__btn, .account__invitation, .edit__save, .password__save, .payed__btn
 {
     color:#302D2A;
     background-color:#EBB24C;
@@ -585,7 +594,7 @@ a{
     font-weight:800;
     overflow: hidden;
     position: fixed;
-    bottom:65px;
+    bottom:60px;
 }
 
 .scanProducts__btn
@@ -633,6 +642,7 @@ header h1{
     bottom: 10px;
     width: 100%;
     font-weight: 600;
+    background-color: #F7F7F7;
 }
 
 .pay__info h2{
@@ -661,6 +671,7 @@ header h1{
     background-color: #A0CEBA;
     padding: 0.5em 1em;
     border-radius: 0.5px;
+    color: black;
 }
 
 /*//////////////////////////////////////////////////
@@ -949,8 +960,8 @@ header h1{
 
 
 /*//////////////////////////////////////////////////
-///////////////////// FILTER ///////////////////////
-//////////////////////////////////////////////////*/
+///////////////////// GRAPHIC //////////////////////
+////////////////////////////////////////////////:/*/
 .container__graphic
 {
     padding-bottom: 3em;
@@ -969,6 +980,42 @@ header h1{
 .graphic__image
 {
     width: 100%;
+}
+
+/*//////////////////////////////////////////////////
+//////////////////// SHOPPEN ///////////////////////
+//////////////////////////////////////////////////*/
+
+.container__payed
+{
+    display:grid;
+}
+
+.payed__cross
+{
+    justify-self: end;
+    margin-right: 2em;
+}
+
+.payed__txt
+{
+    display:grid;
+    justify-items: center;
+    margin-top: 8em;
+}
+
+.payed__txt h2{
+    font-size: 1.3em;
+    text-align:center;
+    width: 150px;
+    font-weight: bold;
+    line-height: 1.3em;
+}
+
+.payed__txt p{
+    width: 200px;
+    text-align: center;
+    margin-top:0;
 }
 
 
